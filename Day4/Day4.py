@@ -17,10 +17,10 @@ test_data = open("Day4\inputData.txt").readlines()
 test_data = ["OOO" + line + "OOO" for line in test_data]
 test_data = ["O" * len(test_data[0])] * 3 + test_data + ["O" * len(test_data[0])] * 3
 
+width = len(test_data)
+
 # Part 1
 count_xmas = 0
-
-width = len(test_data)
 
 for i in range(3, width - 3):
     for j in range(3, width - 3):
@@ -62,16 +62,12 @@ def is_mas_cross(i, j, NWchar, NEchar, SWchar, SEchar):
 for i in range(4, width - 4):
     for j in range(4, width - 4):
         if test_data[i][j] == "A":
-            #SOUTHEAST
             if is_mas_cross(i, j, "M", "M", "S", "S"):
                 count_mas_cross += 1
-            #SOUTHWEST
             elif is_mas_cross(i, j, "S", "M", "S", "M"):
                 count_mas_cross += 1
-            #NORTHWEST
             elif is_mas_cross(i, j, "S", "S", "M", "M"):
                 count_mas_cross += 1
-            #NORTHEAST
             elif is_mas_cross(i, j, "M", "S", "M", "S"):
                 count_mas_cross += 1
 
