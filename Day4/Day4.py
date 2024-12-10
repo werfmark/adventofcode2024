@@ -15,15 +15,15 @@ test_data = open("Day4\inputData.txt").readlines()
 
 #pad with empty to prevent out of bounds
 test_data = ["OOO" + line + "OOO" for line in test_data]
-test_data = ["O" * len(test_data[0])] * 3 + test_data + ["O" * len(test_data[0])] * 3
-
-width = len(test_data)
+width = len(test_data[0])
+test_data = ["O" * width] * 3 + test_data + ["O" * width] * 3
+height = len(test_data)
 
 # Part 1
 count_xmas = 0
 
 for i in range(3, width - 3):
-    for j in range(3, width - 3):
+    for j in range(3, height - 3):
         if test_data[i][j] == "X":
             #EAST
             if test_data[i][j+1] == "M" and test_data[i][j+2] == "A" and test_data[i][j+3] == "S":
@@ -60,7 +60,7 @@ def is_mas_cross(i, j, NWchar, NEchar, SWchar, SEchar):
     return test_data[i-1][j-1] == NWchar and test_data[i-1][j+1] == NEchar and test_data[i+1][j-1] == SWchar and test_data[i+1][j+1] == SEchar
 
 for i in range(4, width - 4):
-    for j in range(4, width - 4):
+    for j in range(4, height - 4):
         if test_data[i][j] == "A":
             if is_mas_cross(i, j, "M", "M", "S", "S"):
                 count_mas_cross += 1
